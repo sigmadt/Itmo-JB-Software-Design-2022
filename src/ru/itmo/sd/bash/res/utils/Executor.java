@@ -19,6 +19,7 @@ public class Executor {
         cmdStorage.put("echo", new EchoCommand());
         cmdStorage.put("pwd", new PwdCommand());
         cmdStorage.put("wc", new WcCommand());
+        cmdStorage.put("grep", new GrepCommand());
     }
 
 
@@ -34,6 +35,7 @@ public class Executor {
             }
 
             var maybeCmd = tokenList.get(0);
+//            System.out.println("Curr token : " + maybeCmd.getInside());
 
             if (maybeCmd.getType() == Token.Type.ASSIGN) {
                 inputStream = assignmentCase(maybeCmd, inputStream, envManager);
@@ -78,7 +80,6 @@ public class Executor {
                             .stream()
                             .map(Token::getInside)
                             .collect(Collectors.toList());
-
 
             return actualCmd.run(inputStream, actualArgs, envManager);
 

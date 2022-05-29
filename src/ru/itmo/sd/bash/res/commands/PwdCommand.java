@@ -17,6 +17,7 @@ public class PwdCommand implements Command {
                 .getCurrentDir()
                 .toAbsolutePath()
                 .toString()
+                .concat("\n")
                 .getBytes();
 
         return new ByteArrayInputStream(fullPathBytes);
