@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains:annotations:23.0.0")
+    implementation("com.beust:jcommander:1.82")
     testImplementation(platform("org.junit:junit-bom:5.8.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("com.google.guava:guava:19.0")

@@ -15,7 +15,7 @@ public class EchoCommand implements Command {
                            List<String> arguments,
                            EnvManager envManager) throws IOException, WrongSyntaxException
     {
-        var argsBySpaceBytes = String.join(" ", arguments).getBytes();
+        var argsBySpaceBytes = String.join(" ", arguments).concat("\n").getBytes();
         return new ByteArrayInputStream(argsBySpaceBytes);
     }
 }

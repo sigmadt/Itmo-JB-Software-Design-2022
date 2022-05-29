@@ -15,23 +15,25 @@ public class Replacer {
 
             if (currSymbol != '$') {
                 content = content.concat(String.valueOf(currSymbol));
-                continue;
-            }
-
-            int varIndex = currIndex + 1;
-            StringBuilder variable = new StringBuilder();
-
-            while (varIndex < input.length() && Character.isLetterOrDigit(content.charAt(varIndex))) {
-                varIndex++;
-                variable.append(content.charAt(varIndex));
-            }
-
-            if (variable.length() > 0) {
-                content = content.concat(envManager.get(variable.toString()));
+                currIndex++;
             } else {
-                content = content.concat(String.valueOf(currSymbol));
+                int varIndex = currIndex + 1;
+                StringBuilder variable = new StringBuilder();
+
+                while (varIndex < input.length() && Character.isLetterOrDigit(input.charAt(varIndex))) {
+                    variable.append(input.charAt(varIndex));
+                    varIndex++;
+                }
+
+                if (variable.length() > 0) {
+                    content = content.concat(envManager.get(variable.toString()));
+                } else {
+                    content = content.concat(String.valueOf(currSymbol));
+                }
+                currIndex = varIndex;
             }
-            currIndex = varIndex;
+
+
         }
 
         return content;
