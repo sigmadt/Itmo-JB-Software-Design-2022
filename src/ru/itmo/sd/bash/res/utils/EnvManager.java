@@ -7,6 +7,11 @@ import java.util.Set;
 public class EnvManager {
     private final Map<String, String> storage = new HashMap<>();
 
+
+    public EnvManager() {
+        set("PWD", Utils.getCurrentDir().toString());
+    }
+
     public final void set(String variable, String elem) {
         storage.put(variable, elem);
     }
