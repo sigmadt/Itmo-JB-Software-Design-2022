@@ -6,6 +6,7 @@ import ru.itmo.sd.bash.res.utils.exceptions.WrongSyntaxException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.List;
 
 public class ExternalCommand implements Command {
@@ -16,6 +17,7 @@ public class ExternalCommand implements Command {
 
         try {
            var processBuilder = new ProcessBuilder(arguments);
+           processBuilder.directory(Path.of(envManager.get("PWD")).toFile());
            if (input == System.in) {
                processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT);
            }
