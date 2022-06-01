@@ -19,7 +19,6 @@ public class Executor {
         cmdStorage.put("echo", new EchoCommand());
         cmdStorage.put("pwd", new PwdCommand());
         cmdStorage.put("wc", new WcCommand());
-        cmdStorage.put("grep", new GrepCommand());
     }
 
 
@@ -35,7 +34,6 @@ public class Executor {
             }
 
             var maybeCmd = tokenList.get(0);
-//            System.out.println("Curr token : " + maybeCmd.getInside());
 
             if (maybeCmd.getType() == Token.Type.ASSIGN) {
                 inputStream = assignmentCase(maybeCmd, inputStream, envManager);
@@ -44,11 +42,18 @@ public class Executor {
 
             if (cmdStorage.containsKey(maybeCmd.getInside())) {
                 inputStream = defaultCase(
-                        maybeCmd,
+                        cmdStorage.get(maybeCmd.getInside()),
                         tokenList.subList(1, tokenList.size()),
                         inputStream,
                         envManager);
 
+            } else {
+                inputStream = defaultCase(
+                        new ExternalCommand(),
+                        tokenList,
+                        inputStream,
+                        envManager
+                );
             }
         }
 
@@ -69,12 +74,11 @@ public class Executor {
     }
 
 
-    private InputStream defaultCase(Token cmdToken,
+    private InputStream defaultCase(Command actualCmd,
                                     List<Token> restTokens,
                                     InputStream inputStream,
                                     EnvManager envManager) {
         try {
-            var actualCmd = cmdStorage.get(cmdToken.getInside());
             var actualArgs =
                     restTokens
                             .stream()
