@@ -23,22 +23,22 @@ public class GrepCommand implements Command {
     private JCommander jCom;
 
     @Parameter(names = "-w", description = "to find whole words only")
-    private final boolean wFlag = false;
+    private boolean wFlag = false;
 
     @Parameter(names = "-i", description = "to ignore lower and upper case")
-    private final boolean iFlag = false;
+    private boolean iFlag = false;
 
     @Parameter(names = "-l", description = "to list names of matching files")
-    private final boolean lFlag = false;
+    private boolean lFlag = false;
 
     @Parameter(names = "-c", description = "to count the number of matched strings")
-    private final boolean cFlag = false;
+    private boolean cFlag = false;
 
     @Parameter(names = "-A", description = "to print the number of strings after matched string")
-    private final int aCapitalFlag = 0;
+    private int aCapitalFlag = 0;
 
     @Parameter(description = "feed arguments to grep command")
-    private final LinkedList<String> givenArguments = new LinkedList<>();
+    private LinkedList<String> givenArguments = new LinkedList<>();
 
     @Override
     public InputStream run(InputStream input, List<String> arguments, EnvManager envManager) throws IOException, WrongSyntaxException {
