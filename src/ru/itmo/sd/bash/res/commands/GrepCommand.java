@@ -66,7 +66,19 @@ public class GrepCommand implements Command {
 
         var output = new StringJoiner("\n");
 
-        // add input stream case
+        if (givenArguments.isEmpty()) {
+            var matchedLines = getMatchedLines(
+                    new String(input.readAllBytes(), StandardCharsets.UTF_8),
+                    searchedPattern);
+
+            for (var line : matchedLines) {
+                output.add(line);
+            }
+            output.add("\n");
+            return new ByteArrayInputStream(output.toString().getBytes(StandardCharsets.UTF_8));
+        }
+
+
         var pathsToContentMap =
                 givenArguments
                         .stream()
