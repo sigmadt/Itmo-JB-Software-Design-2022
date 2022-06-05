@@ -5,6 +5,7 @@ import ru.itmo.sd.bash.res.utils.exceptions.WrongSyntaxException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,10 @@ public class Executor {
         cmdStorage.put("pwd", new PwdCommand());
         cmdStorage.put("wc", new WcCommand());
         cmdStorage.put("grep", new GrepCommand());
+    }
+
+    public List<String> getCommandNames() {
+        return new ArrayList<>(cmdStorage.keySet());
     }
 
 

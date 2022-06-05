@@ -11,7 +11,6 @@ public class Token {
             put('\'', Type.SINGLE_Q_TEXT);
             put('|', Type.PIPE_SYMBOL);
             put('"', Type.DOUBLE_Q_TEXT);
-            // rest will be processed manually
         }
     };
 
@@ -24,13 +23,34 @@ public class Token {
         return typesStorage.get(el);
     }
 
-    // instance related methods
     public Type getType() {
         return type;
     }
 
     public String getInside() {
         return inside;
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Token) {
+            var rightTypeOther = (Token) other;
+            return rightTypeOther.getInside().equals(inside) &&
+                    rightTypeOther.getType().equals(type);
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return inside.hashCode() * inside.length() + type.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Token(%s, %s)", inside, type);
     }
 
 
