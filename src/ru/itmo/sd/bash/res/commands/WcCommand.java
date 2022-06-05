@@ -29,7 +29,7 @@ public class WcCommand implements Command {
         return nums;
     }
 
-    public String beautifulPrint(String fileName,  Map<String, Integer> nums) {
+    public String beautifulPrint(String fileName, Map<String, Integer> nums) {
 //        var first = "\t lines \t words \t bytes \t file";
 
         var res = nums
@@ -42,7 +42,8 @@ public class WcCommand implements Command {
     }
 
     @Override
-    public InputStream run(InputStream input, List<String> arguments, EnvManager envManager) throws IOException, WrongSyntaxException {
+    public InputStream run(InputStream input, List<String> arguments, EnvManager envManager) throws IOException,
+            WrongSyntaxException {
         if (arguments.isEmpty()) {
             var numsForInputStream =
                     getNums(new String(input.readAllBytes(), StandardCharsets.UTF_8));
@@ -76,13 +77,13 @@ public class WcCommand implements Command {
                     arguments
                             .stream()
                             .map(
-                                arg -> {
-                                    try {
-                                        return getNums(Files.readString(Paths.get(arg)));
-                                    } catch (IOException | InvalidPathException e) {
-                                        throw new WrongSyntaxException("There is no such file for this path");
+                                    arg -> {
+                                        try {
+                                            return getNums(Files.readString(Paths.get(arg)));
+                                        } catch (IOException | InvalidPathException e) {
+                                            throw new WrongSyntaxException("There is no such file for this path");
+                                        }
                                     }
-                                }
                             )
                             .flatMap(m -> m.entrySet().stream())
                             .collect(
@@ -94,14 +95,14 @@ public class WcCommand implements Command {
                             );
 
 
-            var resultContent = arguments.size() < 2 ? fileNums
+            var resultContent = arguments.size() < 2 ? fileNums.concat("\n")
                     : fileNums
                     .concat("\n")
-                    .concat(beautifulPrint("total", totalNums));
+                    .concat(beautifulPrint("total", totalNums))
+                    .concat("\n");
 
             return new ByteArrayInputStream(resultContent.getBytes(StandardCharsets.UTF_8));
         }
-
 
 
     }

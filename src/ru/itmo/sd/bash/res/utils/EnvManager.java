@@ -25,7 +25,7 @@ public class EnvManager {
             return System.getenv(variable);
         }
 
-        return "No such variable";
+        return "";
     }
 
     public Set<Map.Entry<String, String>> items() {
