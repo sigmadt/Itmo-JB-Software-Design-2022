@@ -10,10 +10,6 @@ import java.util.List;
 
 public interface Command {
 
-    InputStream run(
-            InputStream input,
-            List<String> arguments,
-            EnvManager envManager)
-            throws IOException,
+    InputStream run(InputStream input, List<String> arguments, EnvManager envManager) throws IOException,
             WrongSyntaxException;
 }
