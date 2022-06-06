@@ -36,7 +36,7 @@ public class Executor {
 
         for (var tokenList : pipedTokens) {
             if (tokenList.isEmpty()) {
-                throw new WrongSyntaxException("executor error");
+                throw new WrongSyntaxException("Given pipe into the void");
             }
 
             var maybeCmd = tokenList.get(0);
