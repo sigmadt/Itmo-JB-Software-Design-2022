@@ -34,7 +34,7 @@ public class BashTranslateHelper {
 
             result.append(new String(inpStream.readAllBytes(), StandardCharsets.UTF_8));
         } catch (WrongSyntaxException e) {
-            result.append("Wrong Syntax Exception happened!");
+            result.append(e.getMessage());
         } catch (IOException e) {
             result.append("IOException happened!");
         }
