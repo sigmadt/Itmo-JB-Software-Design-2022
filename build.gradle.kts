@@ -1,8 +1,9 @@
 plugins {
     java
+    application
 }
 
-group = "org.itmo.java"
+group = "ru.sigmadt"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -15,6 +16,28 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.8.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("com.google.guava:guava:19.0")
+}
+
+
+application {
+    mainClass.set("ru.itmo.sd.bash.Bash")
+}
+
+tasks.register<Jar>("uberJar") {
+    dependsOn(configurations.runtimeClasspath)
+
+    archiveClassifier.set("uber")
+    manifest.attributes["Main-Class"] = application.mainClass.get()
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(sourceSets.main.get().output)
+    from(
+        configurations
+            .runtimeClasspath
+            .get()
+            .filter { it.name.endsWith("jar") }
+            .map(::zipTree)
+    )
 }
 
 sourceSets {

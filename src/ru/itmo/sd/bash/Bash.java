@@ -18,6 +18,14 @@ import java.util.List;
 
 public class Bash {
     private static final String bashSymbol = ">> ";
+    private static final String bashWelcome =
+            "Hello! You are currently using bash imitation created by @sigmadt, "
+                    .concat("consider following. ")
+                    .concat("\n")
+                    .concat("Version : 1.0.2")
+                    .concat("\n")
+                    .concat("type something below ↓");
+            
     private static final List<String> stopWords = Arrays.asList("quit", ":q", "exit");
 
     private static final EnvManager env = new EnvManager();
@@ -28,11 +36,13 @@ public class Bash {
     public static void main(String[] args) {
         BufferedReader bufReader = new BufferedReader(new InputStreamReader(System.in));
         var bash = new Bash();
+        System.out.println(bashWelcome);
         while (true) {
             System.out.print(bashSymbol);
             try {
                 String userInput = bufReader.readLine();
                 if (stopWords.contains(userInput)) {
+                    System.out.println("----exiting bash----");
                     break;
                 }
                 try {

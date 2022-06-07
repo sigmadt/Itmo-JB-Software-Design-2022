@@ -1,1 +1,1 @@
-rootProject.name = "java-1-2022"
+rootProject.name = "bash-imitation"
