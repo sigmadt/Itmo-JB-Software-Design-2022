@@ -38,6 +38,7 @@ public class CatCommand implements Command {
                 )
                 .map(lines -> String.join("\n", lines))
                 .collect(Collectors.joining())
+                .concat("\n")
                 .getBytes(StandardCharsets.UTF_8);
 
         return new ByteArrayInputStream(concatContentBytes);
