@@ -1,9 +1,12 @@
 package ru.itmo.sd.bash.res.commands;
 
 
+import com.beust.jcommander.IParameterValidator;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
 import ru.itmo.sd.bash.res.utils.EnvManager;
+import ru.itmo.sd.bash.res.utils.exceptions.GrepFlagAException;
 import ru.itmo.sd.bash.res.utils.exceptions.WrongSyntaxException;
 
 import java.io.ByteArrayInputStream;
@@ -34,7 +37,10 @@ public class GrepCommand implements Command {
     @Parameter(names = "-c", description = "to count the number of matched strings")
     private boolean cFlag = false;
 
-    @Parameter(names = "-A", description = "to print the number of strings after matched string")
+    @Parameter(
+            names = "-A",
+            description = "to print the number of strings after matched string",
+            validateWith = GrepFlagAException.class)
     private int aCapitalFlag = 0;
 
     @Parameter(description = "feed arguments to grep command")
@@ -46,8 +52,8 @@ public class GrepCommand implements Command {
 
         try {
             jCom.parse(arguments.toArray(new String[0]));
-        } catch (Exception e) {
-            throw new WrongSyntaxException(wrongUsageMessage());
+        } catch (ParameterException e) {
+            throw new WrongSyntaxException(e.getMessage());
 
         }
 
