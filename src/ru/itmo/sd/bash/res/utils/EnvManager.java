@@ -5,11 +5,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class EnvManager {
+
+    public static final String PWD = "PWD";
+
     private final Map<String, String> storage = new HashMap<>();
 
-
     public EnvManager() {
-        set("PWD", Utils.getCurrentDir().toString());
+        set(PWD, Utils.getCurrentDir().toString());
     }
 
     public final void set(String variable, String elem) {
@@ -31,6 +33,4 @@ public class EnvManager {
     public Set<Map.Entry<String, String>> items() {
         return storage.entrySet();
     }
-
-
 }

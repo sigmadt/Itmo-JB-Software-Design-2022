@@ -19,6 +19,8 @@ public class Executor {
         cmdStorage.put("cat", new CatCommand());
         cmdStorage.put("echo", new EchoCommand());
         cmdStorage.put("pwd", new PwdCommand());
+        cmdStorage.put("ls", new LsCommand());
+        cmdStorage.put("cd", new CdCommand());
         cmdStorage.put("wc", new WcCommand());
         cmdStorage.put("grep", new GrepCommand());
     }
