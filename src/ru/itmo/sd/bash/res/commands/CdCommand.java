@@ -19,7 +19,11 @@ public class CdCommand implements Command{
             String current = envManager.get(PWD);
             Path newPath = Path.of(current, arguments.get(0));
             if (Files.exists(newPath)) {
-                envManager.set(PWD, newPath.normalize().toAbsolutePath().toString());
+                if (Files.isDirectory(newPath)) {
+                    envManager.set(PWD, newPath.normalize().toAbsolutePath().toString());
+                } else {
+                    throw new WrongSyntaxException("Not a directory");
+                }
             } else {
                 throw new WrongSyntaxException("No such folder");
             }
