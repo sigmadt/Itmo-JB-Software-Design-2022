@@ -21,10 +21,7 @@ public class LsCommand implements Command {
         Set<String> fileList = new HashSet<>();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
             for (Path path : stream) {
-                if (!Files.isDirectory(path)) {
-                    fileList.add(path.getFileName().toString());
-
-                }
+                fileList.add(path.getFileName().toString());
             }
         }
 
