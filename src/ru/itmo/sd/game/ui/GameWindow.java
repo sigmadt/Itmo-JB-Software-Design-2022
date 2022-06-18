@@ -59,7 +59,7 @@ public class GameWindow {
         textBox.addKeyListener(gameKeyListener);
 
         box.setVisible(true);
-        box.setSize(1000, 800);
+        box.setSize(WIDTH, HEIGHT);
         box.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         try {
