@@ -1,1 +1,1 @@
-rootProject.name = "bash-imitation"
+rootProject.name = "game"

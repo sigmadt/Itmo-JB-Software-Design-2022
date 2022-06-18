@@ -20,7 +20,7 @@ dependencies {
 
 
 application {
-    mainClass.set("ru.itmo.sd.bash.Bash")
+    mainClass.set("ru.itmo.sd.game.Application")
 }
 
 tasks.register<Jar>("uberJar") {
