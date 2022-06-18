@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Executor {
+public class Executor implements ExecutorInterface {
     private GameWindow gameWindow;
     private Grid map;
     private Hero hero;
@@ -39,6 +39,7 @@ public class Executor {
         run();
     }
 
+    @Override
     public void run() {
         gameWindow = new GameWindow();
         while (true) {
@@ -59,7 +60,8 @@ public class Executor {
 
     }
 
-    private void construct() {
+    @Override
+    public void construct() {
         mercs = new ArrayList<>();
 
         try {
@@ -85,6 +87,7 @@ public class Executor {
         }
     }
 
+    @Override
     public Side updateHeroState() {
         while (true) {
             var curr = gameWindow.getGameKeyListener().getLastPressedKey();
@@ -104,7 +107,8 @@ public class Executor {
         }
     }
 
-    private void loadMap(String fileName) throws IOException {
+    @Override
+    public void loadMap(String fileName) throws IOException {
         Scanner input = new Scanner(new File(fileName));
         var width = input.nextInt();
         var height = input.nextInt();
