@@ -1,8 +1,9 @@
-# Software Design
-This repository stays for the all homeworks in course. Check branches if you need to see implementation for the specific task.
+# HW3-grep
 
-* HW1-bash -- bash immitation, supports `cat`, `echo`, `pwd`, `wc`.
+This version of bash supports these commands:
+- [cat](src/ru/itmo/sd/bash/res/commands/CatCommand.java)
+- [echo](src/ru/itmo/sd/bash/res/commands/EchoCommand.java)
+- [pwd](src/ru/itmo/sd/bash/res/commands/PwdCommand.java)
+- [wc](src/ru/itmo/sd/bash/res/commands/WcCommand.java)
+- [grep](src/ru/itmo/sd/bash/res/commands/GrepCommand.java)
 
-* HW3-bash -- `grep` command added.
-
-* HW4-game -- rogue-like game implementation.
