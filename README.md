@@ -16,7 +16,7 @@ They critize your music, your lifestyle, even your haircut. Screw this and let's
 Good luck!
 
 
-##Project structure
+## Project structure
 * [`Executor`](src/ru/itmo/sd/game/executor/Executor.java) class is responsible for loading map and running main 
   game window
 * [`Game window`](src/ru/itmo/sd/game/ui/GameWindow.java) class draws UI and its components
