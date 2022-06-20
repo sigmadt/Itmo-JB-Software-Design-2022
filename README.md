@@ -25,5 +25,9 @@ Good luck!
 * [`Unit`](src/ru/itmo/sd/game/units/Unit.java) interface represents every object on a map
 * [`Abstract mercenary`](src/ru/itmo/sd/game/mercenary/AbstractMerc.java) abstract class sets the rules of the units' 
   movement on a map
+  
+## Launching project instructure
+Simply clone repository and run `./run.sh` scipt file from the root. Enjoy! 🔮
+  
 
 
